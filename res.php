@@ -1,6 +1,4 @@
 <?php
-
-
 include ('conn.php');
 
 $campo="%{$_POST['campo']}%";

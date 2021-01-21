@@ -1,10 +1,10 @@
 <?php
 require_once 'mysql.php';
+
 $ordens = "";
 $id = "";
 
 $ordens = carregar($id);
-
 
 $evazio = empty($_GET);
 if (!$evazio) {
@@ -24,34 +24,8 @@ if (!$evazio) {
     <meta charset="utf-8">
     <title>O.S</title>
 
-    <link rel="stylesheet" href="css.css">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="js.js"></script>
-    <style>
-        a:link,
-        a:visited {
-            background-color: white;
-            color: #741F80;
-            padding: 14px 25px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            border-radius: 4px;
-            -moz-border-radius: 4px;
-            -webkit-border-radius: 5px;
-            border: 1px solid #000000;
-        }
-
-        a:hover,
-        a:active {
-            background-color: red;
-        }
-
-        body {
-            background-color: #F7DBFF;
-        }
-    </style>
-
+    <link rel="stylesheet" href="css/css.css">
+    <link rel="stylesheet" href="css/buscar.css">
 </head>
 
 <body>
@@ -62,11 +36,11 @@ if (!$evazio) {
     <div id="resultado">
         <?php
         include('conn.php');
-
+        
         $sql = $mysqli->prepare('SELECT * FROM ordens');
         $sql->execute();
         $sql->bind_result($id, $data, $cliente, $cpf, $cnpj, $cep, $rua, $bairro, $cidade, $uf, $telefone, $celular, $email, $aparelho, $marca, $serie, $preco, $defeito, $obs, $servico, $garantia);
-
+    
         echo "
                     <table>
 
@@ -108,7 +82,14 @@ if (!$evazio) {
         ?>
 
     </div>
-    <a href="http://localhost/ordem">Voltar</button>
+
+    <div>
+        <a href="http://localhost:8080/index.php">Voltar</a>
+    </div>
+    
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="js/js.js"></script>
 </body>
 
 </html>

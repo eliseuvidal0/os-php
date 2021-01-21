@@ -4,7 +4,7 @@
 function conexao()
 {
     try {
-        $conn = new PDO("mysql:host=localhost:3306;dbname=ordem", "root", "");
+        $conn = new PDO("mysql:host=localhost:3306;dbname=ordem", "root", "root");
         return $conn;
     } catch (PDOException $ex) {
         echo $ex->getMessage();
@@ -45,21 +45,10 @@ function salvar ($data, $cliente, $cpf, $cnpj, $cep, $rua, $bairro, $cidade, $uf
         return "<script>window.location='index.php';alert('O.S salva com sucesso!');</script>";
     } else {
         print_r($stmt->errorInfo());
-        return "<script>window.location='ordem.php';alert('Não foi possível salvar a O.S!');</script>";
+        return "<script>window.location='index.php';alert('Não foi possível salvar a O.S!');</script>";
     }
 }
-function consultar()
-{
-    $conn = conexao();
-    $stmt = $conn->prepare("SELECT * 
-                FROM ordens ORDER BY id");
-    if ($stmt->execute()) {
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    } else {
-        print_r($stmt->errorInfo());
-        return "Não foi possível realizar a consulta.";
-    }
-}
+
 function carregar($id)
 {
     $conn = conexao();
@@ -88,18 +77,5 @@ function excluir($id)
         return "Não foi possível excluir o produto!";
     }
 }
-function buscar($buscar)
-{
-    $conn = conexao();
-    
-    $stmt = $conn->prepare("SELECT *
-                    FROM ordens WHERE cliente LIKE '%$buscar%' LIMIT 5");
-    $stmt->bindParam(":cliente", $buscar);
-    if ($stmt->execute()) {
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    } else {
-        print_r($stmt->errorInfo());
-        return "Não foi possível realizar a consulta!";
-    }
-}
+
 ?>

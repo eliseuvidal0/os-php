@@ -1,0 +1,22 @@
+a:link,
+a:visited {
+    background-color: white;
+    color: #741F80;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 5px;
+    border: 1px solid #000000;
+}
+
+a:hover,
+a:active {
+    background-color: red;
+}
+
+body {
+    background-color: #F7DBFF;
+}

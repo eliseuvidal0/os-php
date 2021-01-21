@@ -47,10 +47,11 @@ if (!$evazio) {
     $obs = $_POST['obs'];
     $servico = $_POST['servico'];
     $garantia = $_POST['garantia'];
-
+    
     $msg = salvar($data, $cliente, $cpf, $cnpj, $cep, $rua, $bairro, $cidade, $uf, $telefone, $celular, $email, $aparelho, $marca, $serie, $preco, $defeito, $obs, $servico, $garantia);
 
-    echo "<script>window.location='index.php';alert('Ordem salva com sucesso!');</script>";
+    echo $msg;
+    header('Location: http://localhost:8080/index.php');
 }
 
 ?>
