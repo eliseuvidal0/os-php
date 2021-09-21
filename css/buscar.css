@@ -1,7 +1,7 @@
 a:link,
 a:visited {
     background-color: white;
-    color: #741F80;
+    color: #9d939e;
     padding: 14px 25px;
     text-align: center;
     text-decoration: none;
@@ -18,5 +18,5 @@ a:active {
 }
 
 body {
-    background-color: #F7DBFF;
+    background-color: #A9A9A9;
 }
