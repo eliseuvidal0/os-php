@@ -30,10 +30,10 @@ if (!$evazio) {
 
     <div id="resultado">
         <?php
-        include('res.php');
+        
         $campo="'%%'";
         $ordens = $ordemDAO->consultar($campo);
-    
+        include('res.php');
         echo "
                     <table>
 
