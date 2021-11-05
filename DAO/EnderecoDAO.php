@@ -4,12 +4,13 @@ class EnderecoDAO {
 
     private $conn = "";
     
-    public function __construct() {
+    public function __construct()
+    {
         $this->conn = Conn::getInstance();
     }
 
-    public function getEndereco($cep){
-
+    public function getEndereco($cep)
+    {
         $stmt = $this->conn->prepare("SELECT * FROM endereco WHERE cep = '{$cep}'");
 
         if ($stmt->execute()) {
@@ -20,7 +21,8 @@ class EnderecoDAO {
         }
     }
 
-    public function salvar($endereco){
+    public function salvar($endereco)
+    {
         $stmt = $this->conn->prepare("INSERT INTO endereco (cep, rua, bairro, cidade, uf) 
                                     values (:cep, :rua, :bairro, :cidade, :uf)");
 
