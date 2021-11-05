@@ -137,67 +137,67 @@
             <br></br>
             <!--div caixas-->
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="aparelhoComSenha" name="customRadioInline1" class="custom-control-input" value="Aparelho com senha" />
+                <input type="radio" id="aparelhoComSenha" name="opcao" class="custom-control-input" value="Aparelho com senha" />
                 <label class="custom-control-label" for="aparelhoComSenha">Aparelho com senha</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="audio" name="customRadioInline1" class="custom-control-input" value="Áudio" />
+                <input type="radio" id="audio" name="opcao" class="custom-control-input" value="Áudio" />
                 <label class="custom-control-label" for="audio">Áudio</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="bluetooth" name="customRadioInline1" class="custom-control-input" value="Bluetooth" />
+                <input type="radio" id="bluetooth" name="opcao" class="custom-control-input" value="Bluetooth" />
                 <label class="custom-control-label" for="bluetooth">Bluetooth</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="botaoHome" name="customRadioInline1" class="custom-control-input" value="Botão home" />
+                <input type="radio" id="botaoHome" name="opcao" class="custom-control-input" value="Botão home" />
                 <label class="custom-control-label" for="botaoHome">Botão home</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="botaoPower" name="customRadioInline1" class="custom-control-input" value="Botão power" />
+                <input type="radio" id="botaoPower" name="opcao" class="custom-control-input" value="Botão power" />
                 <label class="custom-control-label" for="botaoPower">Botão power</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="botaoVolume" name="customRadioInline1" class="custom-control-input" value="Botão volume" />
+                <input type="radio" id="botaoVolume" name="opcao" class="custom-control-input" value="Botão volume" />
                 <label class="custom-control-label" for="botaoVolume">Botão volume</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="cameraFrontal" name="customRadioInline1" class="custom-control-input" value="Câmera frontal" />
+                <input type="radio" id="cameraFrontal" name="opcao" class="custom-control-input" value="Câmera frontal" />
                 <label class="custom-control-label" for="cameraFrontal">Câmera frontal</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="cameraTraseira" name="customRadioInline1" class="custom-control-input" value="Câmera traseira" />
+                <input type="radio" id="cameraTraseira" name="opcao" class="custom-control-input" value="Câmera traseira" />
                 <label class="custom-control-label" for="cameraTraseira">Câmera traseira</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="chip" name="customRadioInline1" class="custom-control-input" value="Chip" />
+                <input type="radio" id="chip" name="opcao" class="custom-control-input" value="Chip" />
                 <label class="custom-control-label" for="chip">Chip</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="compraDeAparelho" name="customRadioInline1" class="custom-control-input" value="Compra de aparelho" />
+                <input type="radio" id="compraDeAparelho" name="opcao" class="custom-control-input" value="Compra de aparelho" />
                 <label class="custom-control-label" for="compraDeAparelho">Compra de aparelho</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="digital" name="customRadioInline1" class="custom-control-input" value="Digital" />
+                <input type="radio" id="digital" name="opcao" class="custom-control-input" value="Digital" />
                 <label class="custom-control-label" for="digital">Digital</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="impossivelRealizarTestes" name="customRadioInline1" class="custom-control-input" value="Impossível realizar testes" />
+                <input type="radio" id="impossivelRealizarTestes" name="opcao" class="custom-control-input" value="Impossível realizar testes" />
                 <label class="custom-control-label" for="impossivelRealizarTestes">Impossível realizar testes</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="touchFuncionando" name="customRadioInline1" class="custom-control-input" value="Áudio" />
+                <input type="radio" id="touchFuncionando" name="opcao" class="custom-control-input" value="Áudio" />
                 <label class="custom-control-label" for="touchFuncionando">Touch funcionando</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="microfone" name="customRadioInline1" class="custom-control-input" value="Microfone" />
+                <input type="radio" id="microfone" name="opcao" class="custom-control-input" value="Microfone" />
                 <label class="custom-control-label" for="microfone">Microfone</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="testeCarga" name="customRadioInline1" class="custom-control-input" value="Teste carga" />
+                <input type="radio" id="testeCarga" name="opcao" class="custom-control-input" value="Teste carga" />
                 <label class="custom-control-label" for="testeCarga">Teste carga</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="wifi" name="customRadioInline1" class="custom-control-input" value="Wifi" />
+                <input type="radio" id="wifi" name="opcao" class="custom-control-input" value="Wifi" />
                 <label class="custom-control-label" for="wifi">Wifi</label>
             </div>
 

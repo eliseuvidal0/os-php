@@ -13,6 +13,7 @@ class Ordem {
     private $obs;
     private $servico;
     private $garantia;
+    private $opcao;
  
     public function getIdOrdem(){
         return $this->id;
@@ -103,5 +104,13 @@ class Ordem {
 
     public function setGarantia($garantia){
         $this->garantia = $garantia;
+    }
+
+    public function getOpcao(){
+        return $this->opcao;
+    }
+
+    public function setOpcao($opcao){
+        $this->opcao = $opcao;
     }
 }

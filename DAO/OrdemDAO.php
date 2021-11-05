@@ -14,11 +14,8 @@ class OrdemDAO {
 
     public function salvar($ordem) {
       
-        $dataFormatada = implode("-", array_reverse(explode("/", trim($ordem->getData())))); 
-        $ordem->setData($dataFormatada);
-
-        $stmt = $this->conn->prepare("INSERT INTO ordem (id_cliente, id_endereco, `data`, aparelho, marca, serie, preco, defeito, obs, servico, garantia) 
-                                    values (:id_cliente, :id_endereco, :data, :aparelho, :marca, :serie, :preco, :defeito, :obs, :servico, :garantia)");
+        $stmt = $this->conn->prepare("INSERT INTO ordem (id_cliente, id_endereco, `data`, aparelho, marca, serie, preco, defeito, obs, servico, garantia, opcao) 
+                                    values (:id_cliente, :id_endereco, :data, :aparelho, :marca, :serie, :preco, :defeito, :obs, :servico, :garantia, :opcao)");
 
         $stmt->bindValue(":id_cliente", $ordem->getIdCliente());
         $stmt->bindValue(":id_endereco", $ordem->getIdEndereco());
@@ -31,13 +28,15 @@ class OrdemDAO {
         $stmt->bindValue(":obs", $ordem->getObs());
         $stmt->bindValue(":servico", $ordem->getServico());
         $stmt->bindValue(":garantia", $ordem->getGarantia());
+        $stmt->bindValue(":opcao", $ordem->getOpcao());
 
-        if ($stmt->execute()) {
+        try {
+            $stmt->execute();
             echo "<script>alert('Ordem cadastrada com sucesso!');document.location='../index.php'</script>";
-        } else {
+        } catch (PDOException $e) {
             print_r($stmt->errorInfo());
             echo "<script>alert('Erro ao cadastrar Ordem!');history.back()</script>";
-        }
+        } 
     }
 
     public function consultar($campo){
@@ -54,12 +53,12 @@ class OrdemDAO {
             $stmt->execute();
             return $stmt->fetchall(PDO::FETCH_OBJ);
         } catch (PDOException $e) {
-            echo $e->getMessage().' - try linha 56 metodo consultar OrdemDAO';
+            echo $e->getMessage().' - try linha 58 metodo consultar OrdemDAO';
         }   
     }
 
     public function getOrdem($id) {
-        $stmt = $this->conn->prepare('select id_ordem,data,aparelho,marca,serie,preco,defeito,obs,servico,garantia,nome,cpf,cnpj,telefone,celular,email,cep,rua,bairro,cidade,uf
+        $stmt = $this->conn->prepare('select id_ordem,data,aparelho,marca,serie,preco,defeito,obs,servico,garantia,nome,cpf,cnpj,telefone,celular,email,cep,rua,bairro,cidade,uf,opcao
                                     from bancolocal.ordem as o
                                     left join bancolocal.clientes as c on o.id_cliente = c.id_cliente
                                     left join bancolocal.endereco as e on o.id_endereco = c.id_endereco

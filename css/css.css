@@ -20,8 +20,10 @@ input[type=text]
 table
 {
     position: absolute;
-    top: 150px;
-    left: 80px;
+    top: 120px;
+    width: auto;
+	margin: 0 auto;
+	padding: 10px;
 }
 table thead td
 {

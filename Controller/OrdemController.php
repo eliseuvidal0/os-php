@@ -11,7 +11,7 @@ class OrdemController {
     private $ordemDAO;
 
     public function __construct() {
-
+        $this->ordemDAO = new OrdemDAO();
     }
 
     public function salvar() {
@@ -19,19 +19,24 @@ class OrdemController {
         if($_POST['data'] < date('d/m/Y')){
             //echo "<script>alert('Data não pode ser menor ou igual a hoje');history.back()</script>";
         }
-        echo $_POST['customRadioInline1'].' => vamos ver <br>';
-        die;
+
         $ordem    = new Ordem();
         $cliente  = new Cliente();
         $endereco = new Endereco();
         $cli      = new ClienteDAO;
         $end      = new EnderecoDAO();
-        $ordemDAO = new OrdemDAO();
 
-        $cpf = preg_replace('/[^0-9]/', '', $_POST['cpf']);
-        $cli = $cli->getCliente($cpf);
-        $end = $end->getEndereco($_POST['cep']);
+        $cpf  = preg_replace('/[^0-9]/', '', $_POST['cpf']);
+        $cnpj = preg_replace('/[^0-9]/', '', $_POST['cnpj']);
 
+        if($cpf) {
+            $cli  = $cli->getCliente($cpf);
+        }else {
+            $cli  = $cli->getCliente($cnpj);
+        }
+        
+        $end  = $end->getEndereco($_POST['cep']);
+        
         if($end){
             $ordem->setIdEndereco($end->id_endereco);
             $endereco = $end;
@@ -54,7 +59,7 @@ class OrdemController {
             $cliente->setNome($_POST['cliente']);
             $cliente->setEmail($_POST['email']);
             $cliente->setCpf($cpf);
-            $cliente->setCnpj($_POST['cnpj']);
+            $cliente->setCnpj($cnpj);
             $cliente->setCelular($_POST['celular']);
             $cliente->setTelefone($_POST['telefone']);
             $cliente->setIdEndereco($endereco->id_endereco);
@@ -62,9 +67,10 @@ class OrdemController {
             $ordem->setIdCliente($cliente->id_cliente);
         }
 
+        $dataFormatada = implode("-", array_reverse(explode("/", trim($_POST['data']))));
         $preco = str_replace(',', '.', $_POST['preco']);
 
-        $ordem->setData($_POST['data']);
+        $ordem->setData($dataFormatada);
         $ordem->setAparelho($_POST['aparelho']);
         $ordem->setMarca($_POST['marca']);
         $ordem->setSerie($_POST['serie']);
@@ -73,8 +79,9 @@ class OrdemController {
         $ordem->setObs($_POST['obs']);
         $ordem->setServico($_POST['servico']);
         $ordem->setGarantia($_POST['garantia']);
+        $ordem->setOpcao($_POST['opcao']);
 
-        if($ordemDAO->salvar($ordem)) {
+        if($this->ordemDAO->salvar($ordem)) {
             echo "<script>alert('Ordem cadastrada com sucesso!');document.location='../index.php'</script>";
         }else{
             echo "<script>alert('Erro ao cadastrar Ordem!');history.back()</script>";
@@ -86,8 +93,16 @@ class OrdemController {
 
     }
 
-    public function excluir() {
+    public function excluir($id) {
+        return $this->ordemDAO->excluir($id);
+    }
 
+    public function getOrdem($id) {
+        return $this->ordemDAO->getOrdem($id);
+    }
+
+    public function consultar($campo) {
+        return $this->ordemDAO->consultar($campo);
     }
 }
 
@@ -99,9 +114,4 @@ if(isset($_GET['action']) && $_GET['action'] == 'salvar') {
 
 else if(isset($_GET['action']) && $_GET['action'] == 'editar') {
     $ordemController->editar();
-}
-
-else if(isset($_GET['action']) && $_GET['action'] == 'excluir') {
-    $id = $_GET["id"];
-    $ordemController->excluir();
 }

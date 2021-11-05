@@ -1,14 +1,14 @@
 <?php
-require_once("../Controller/OrdemController.php");
+require_once("../Controller/ClienteController.php");
 
-$ordemController = new OrdemController;
+$clienteController = new ClienteController;
 $evazio = empty($_GET);
 if (!$evazio) {
     $id = $_GET['id'];
 
     if ($_GET['acao'] == "excluir") {
-        $ordemController->excluir($id);
-        echo "<script>window.location='consultar.php';alert('O.S excluida!');</script>";
+        $clienteController->excluir($id);
+        echo "<script>window.location='consultar.php';alert('Cliente excluído!');</script>";
     }
 }
 ?>
@@ -27,28 +27,31 @@ if (!$evazio) {
     <div>
         <a href="http://localhost:8080/index.php">Voltar</a>
     </div>
-
+    <!--
     <form method="POST">
         <input type="text" name="campo" id="campo">
-    </form>
+    </form>-->
 
     <div id="resultado">
         <?php
         
         $campo="'%%'";
-        $ordens = $ordemController->consultar($campo);
-        include('res.php');
+        $clientes = $clienteController->consultar($campo);
+        //include('res.php');
         echo "
                     <table>
 
                         <thead>
                             <tr>
-                                <td>Nº ORDEM</td>
-                                <td>DATA</td>
+                                <td>Nº CLIENTE</td>
                                 <td>NOME</td>
                                 <td>CPF</td>
-                                <td>MARCA</td>
-                                <td>PREÇO</td>
+                                <td>CNPJ</td>
+                                <td>TELEFONE</td>
+                                <td>CELULAR</td>
+                                <td>EMAIL</td>
+                                <td>CEP</td>
+                                <td>TOTAL GASTO</td>
 
                                 <td>&nbsp;</td>
                                 <td>&nbsp;</td>
@@ -56,21 +59,24 @@ if (!$evazio) {
                         </thead>
 
                         <tbody>";
-        foreach ($ordens as $ordem) {
+        foreach ($clientes as $cli) {
 
-            $id = $ordem->id_ordem;
-            $data = date('d/m/Y', strtotime($ordem->data));
-            $total = number_format($ordem->preco, 2, ',', '.');
+            $id = $cli->id_cliente;
+            $total = $clienteController->buscarValor($id);
+
             echo "
                         <tr>
-                            <td>$ordem->id_ordem</td>
-                            <td>$data</td>
-                            <td>$ordem->nome</td>
-                            <td>$ordem->cpf</td>
-                            <td>$ordem->marca</td>
+                            <td>$cli->id_cliente</td>
+                            <td>$cli->nome</td>
+                            <td>$cli->cpf</td>
+                            <td>$cli->cnpj</td>
+                            <td>$cli->telefone</td>
+                            <td>$cli->celular</td>
+                            <td>$cli->email</td>
+                            <td>$cli->cep</td>
                             <td>$total</td>
                             
-                            <td><a href='carregar.php?acao=carregar&id=$id'>Carregar</button></td>
+                            <td><a href='carregarCliente.php?acao=carregar&id=$id'>Carregar</button></td>
                             <td><a href='consultar.php?acao=excluir&id=$id' >Excluir</button></td>
                             
                         </tr>  ";
@@ -80,6 +86,7 @@ if (!$evazio) {
         ?>
 
     </div>
+    
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="js/js.js"></script>

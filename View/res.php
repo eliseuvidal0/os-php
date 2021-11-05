@@ -1,12 +1,12 @@
 <?php
 require_once("../DAO/OrdemDAO.php");
 
-$ordemDAO = new OrdemDAO;
+$ordemController = new OrdemController;
 if(isset($_POST['campo'])){
 
     $campo="'%{$_POST['campo']}%'";
 
-    $ordens = $ordemDAO->consultar($campo);
+    $ordens = $ordemController->consultar($campo);
 
     echo"
     <table>
@@ -30,6 +30,7 @@ if(isset($_POST['campo'])){
 
     $id = $ordem->id_ordem;
     $data = date('d/m/Y', strtotime($ordem->data));
+    $total = number_format($ordem->preco, 2, ',', '.');
     echo "
         <tr>
             <td>$ordem->id_ordem</td>
@@ -37,7 +38,7 @@ if(isset($_POST['campo'])){
             <td>$ordem->nome</td>
             <td>$ordem->cpf</td>
             <td>$ordem->marca</td>
-            <td>$ordem->preco</td>
+            <td>$total</td>
             
             <td><a href='imprimir.php?acao=carregar&id=$id'>Carregar</button></td>
             <td><a href='consultar.php?acao=excluir&id=$id' >Excluir</button></td>
