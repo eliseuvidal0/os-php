@@ -7,8 +7,16 @@ if (!$evazio) {
     $id = $_GET['id'];
 
     if ($_GET['acao'] == "excluir") {
+        echo $result = "<script>
+                var result = confirm('Essa ação excluirá todas ordens vinculadas a este cliente. Deseja continuar?');
+            
+                if (!result) {
+                    window.location='consultarClientes.php';
+                }
+            </script>";
+
         $clienteController->excluir($id);
-        echo "<script>window.location='consultar.php';alert('Cliente excluído!');</script>";
+        echo "<script>window.location='consultarClientes.php';alert('Cliente excluído!');</script>";
     }
 }
 ?>
@@ -77,7 +85,7 @@ if (!$evazio) {
                             <td>$total</td>
                             
                             <td><a href='carregarCliente.php?acao=carregar&id=$id'>Carregar</button></td>
-                            <td><a href='consultar.php?acao=excluir&id=$id' >Excluir</button></td>
+                            <td><a href='consultarClientes.php?acao=excluir&id=$id' >Excluir</button></td>
                             
                         </tr>  ";
         }
