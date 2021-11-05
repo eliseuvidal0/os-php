@@ -92,6 +92,7 @@ class ClienteDAO {
 
     public function excluir($id)
     {
+        $this->excluirOrdem($id);
         $stmt = $this->conn->prepare("DELETE
                     FROM clientes WHERE id_cliente = :id");
         $stmt->bindParam(":id", $id);
@@ -100,9 +101,25 @@ class ClienteDAO {
             $stmt->execute();
             return $stmt->fetchall(PDO::FETCH_OBJ);
         } catch (PDOException $e) {
-            //echo $e->getMessage().' - Não foi possível excluír a ordem';
-            echo ' - Não foi possível excluír a ordem';
+            //echo $e->getMessage().' - Não foi possível excluír cliente';
+            echo ' - Não foi possível excluír o Cliente';
             die;
         } 
+    }
+
+    public function excluirOrdem($id)
+    {
+        $stmt = $this->conn->prepare("DELETE
+                    FROM ordem WHERE id_cliente = :id");
+        $stmt->bindParam(":id", $id);
+
+        try {
+            $stmt->execute();
+            return $stmt->fetchall(PDO::FETCH_OBJ);
+        } catch (PDOException $e) {
+            //echo $e->getMessage().' - Não foi possível excluír cordem';
+            echo ' - Não foi possível excluír a Ordem';
+            die;
+        }
     }
 }
