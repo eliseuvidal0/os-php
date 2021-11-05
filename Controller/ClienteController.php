@@ -6,11 +6,13 @@ class ClienteController {
 
     private $clienteDAO;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->clienteDAO = new ClienteDAO;
     }
 
-    public function editar($id) {
+    public function editar($id)
+    {
         echo 'editando...';
         echo '<hr>';
         echo $_POST['cliente'].'<br>';
@@ -29,19 +31,23 @@ class ClienteController {
         var_dump($clienteAntigo);
     }
 
-    public function excluir($id) {
+    public function excluir($id)
+    {
         return $this->clienteDAO->excluir($id);
     }
 
-    public function buscarClientePorId($id) {
+    public function buscarClientePorId($id)
+    {
         return $this->clienteDAO->buscarClientePorId($id);
     }
 
-    public function consultar($campo) {
+    public function consultar($campo)
+    {
         return $this->clienteDAO->consultar($campo);
     }
 
-    public function buscarValor($id) {
+    public function buscarValor($id)
+    {
         $resultado = $this->clienteDAO->buscarValor($id);
 
         $total = 0;
