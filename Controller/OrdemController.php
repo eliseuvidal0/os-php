@@ -10,13 +10,14 @@ require_once("../DAO/OrdemDAO.php");
 class OrdemController {
     private $ordemDAO;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->ordemDAO = new OrdemDAO();
     }
 
-    public function salvar() {
-     
-        if($_POST['data'] < date('d/m/Y')){
+    public function salvar()
+    {
+        if($_POST['data'] < date('d/m/Y')) {
             //echo "<script>alert('Data não pode ser menor ou igual a hoje');history.back()</script>";
         }
 
@@ -37,7 +38,7 @@ class OrdemController {
         
         $end  = $end->getEndereco($_POST['cep']);
         
-        if($end){
+        if($end) {
             $ordem->setIdEndereco($end->id_endereco);
             $endereco = $end;
         } else {
@@ -51,7 +52,7 @@ class OrdemController {
             $ordem->setIdEndereco($endereco->id_endereco);
         }
         
-        if($cli){
+        if($cli) {
             $ordem->setIdCliente($cli->id_cliente);
             $cliente = $cli;
         } else {
@@ -89,19 +90,23 @@ class OrdemController {
         
     }
 
-    public function editar() {
-
+    public function editar()
+    {
+        // se precisar
     }
 
-    public function excluir($id) {
+    public function excluir($id)
+    {
         return $this->ordemDAO->excluir($id);
     }
 
-    public function getOrdem($id) {
+    public function getOrdem($id)
+    {
         return $this->ordemDAO->getOrdem($id);
     }
 
-    public function consultar($campo) {
+    public function consultar($campo)
+    {
         return $this->ordemDAO->consultar($campo);
     }
 }
