@@ -4,14 +4,14 @@ class ClienteDAO {
 
     private $conn = "";
     
-    public function __construct() {
+    public function __construct()
+    {
         $this->conn = Conn::getInstance();
     }
 
-    public function getCliente($cpfCnpj){
-
-
-        if(strlen($cpfCnpj) > 13){
+    public function getCliente($cpfCnpj)
+    {
+        if (strlen($cpfCnpj) > 13) {
             $stmt = $this->conn->prepare("SELECT * FROM clientes WHERE cnpj = '{$cpfCnpj}'");
         } else {
             $stmt = $this->conn->prepare("SELECT * FROM clientes WHERE cpf = '{$cpfCnpj}'");
@@ -26,8 +26,8 @@ class ClienteDAO {
         }
     }
 
-    public function salvar($cliente){
-
+    public function salvar($cliente)
+    {
         $stmt = $this->conn->prepare("INSERT INTO clientes (id_endereco, nome, cpf, cnpj, telefone, celular, email) 
                                     values (:id_endereco, :nome, :cpf, :cnpj, :telefone, :celular, :email)");
 
@@ -47,8 +47,8 @@ class ClienteDAO {
         }
     }
 
-    public function consultar($campo){
-
+    public function consultar($campo)
+    {
         $stmt = $this->conn->prepare('select c.id_cliente, c.nome, c.cpf, c.cnpj, c.telefone, c.celular, c.email, e.cep
                         from bancolocal.clientes as c
                         left join bancolocal.endereco as e on c.id_endereco = e.id_endereco');
@@ -62,7 +62,8 @@ class ClienteDAO {
         }   
     }
 
-    public function buscarValor($id) {
+    public function buscarValor($id)
+    {
         $stmt = $this->conn->prepare('select preco
                         from bancolocal.ordem where id_cliente = '.$id);
 
@@ -74,7 +75,8 @@ class ClienteDAO {
         } 
     }
 
-    public function buscarClientePorId($id) {
+    public function buscarClientePorId($id)
+    {
         $stmt = $this->conn->prepare('select c.id_cliente, c.nome, c.cpf, c.cnpj, c.telefone, c.celular, c.email, e.cep, e.rua, e.bairro, e.cidade, e.uf
         from bancolocal.clientes as c
         left join bancolocal.endereco as e on c.id_endereco = e.id_endereco
@@ -88,11 +90,12 @@ class ClienteDAO {
         }   
     }
 
-    public function excluir($id) {
-
+    public function excluir($id)
+    {
         $stmt = $this->conn->prepare("DELETE
                     FROM clientes WHERE id_cliente = :id");
         $stmt->bindParam(":id", $id);
+
         try {
             $stmt->execute();
             return $stmt->fetchall(PDO::FETCH_OBJ);
@@ -101,6 +104,5 @@ class ClienteDAO {
             echo ' - Não foi possível excluír a ordem';
             die;
         } 
-        
     }
 }
