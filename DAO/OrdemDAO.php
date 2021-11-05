@@ -8,12 +8,13 @@ class OrdemDAO {
 
     private $conn = "";
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->conn = Conn::getInstance();
     }
 
-    public function salvar($ordem) {
-      
+    public function salvar($ordem)
+    {
         $stmt = $this->conn->prepare("INSERT INTO ordem (id_cliente, id_endereco, `data`, aparelho, marca, serie, preco, defeito, obs, servico, garantia, opcao) 
                                     values (:id_cliente, :id_endereco, :data, :aparelho, :marca, :serie, :preco, :defeito, :obs, :servico, :garantia, :opcao)");
 
@@ -39,8 +40,8 @@ class OrdemDAO {
         } 
     }
 
-    public function consultar($campo){
-
+    public function consultar($campo)
+    {
         #$stmt = $this->conn->prepare('select o.id_ordem, o.data, c.nome,c.cpf,o.marca,o.preco
         #                        from bancolocal.ordem as o
         #                        left join bancolocal.clientes as c on o.id_cliente = c.id_cliente');
@@ -57,7 +58,8 @@ class OrdemDAO {
         }   
     }
 
-    public function getOrdem($id) {
+    public function getOrdem($id)
+    {
         $stmt = $this->conn->prepare('select id_ordem,data,aparelho,marca,serie,preco,defeito,obs,servico,garantia,nome,cpf,cnpj,telefone,celular,email,cep,rua,bairro,cidade,uf,opcao
                                     from bancolocal.ordem as o
                                     left join bancolocal.clientes as c on o.id_cliente = c.id_cliente
@@ -72,11 +74,12 @@ class OrdemDAO {
         } 
     }
 
-    public function excluir($id){
-
+    public function excluir($id)
+    {
         $stmt = $this->conn->prepare("DELETE
                     FROM ordem WHERE id_ordem = :id");
         $stmt->bindParam(":id", $id);
+
         try {
             $stmt->execute();
             return $stmt->fetchall(PDO::FETCH_OBJ);
@@ -85,6 +88,5 @@ class OrdemDAO {
             echo ' - Não foi possível excluír a ordem';
             die;
         } 
-        
     }
 }
