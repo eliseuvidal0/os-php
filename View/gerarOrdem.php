@@ -7,7 +7,9 @@
 </head>
 
 <body style="background: #A9A9A9">
-
+    <header>
+        <?php include 'head.php'; ?>
+    </header>
     <center>
         <h1>Ordem de Serviço</h1>
         <h5>Bigorrilho (41)3026-1991</h5>

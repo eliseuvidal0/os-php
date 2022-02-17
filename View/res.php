@@ -9,7 +9,7 @@ if(isset($_POST['campo'])){
     $ordens = $ordemController->consultar($campo);
 
     echo"
-    <table>
+    <table class='os'>
 
         <thead>
             <tr>
@@ -40,13 +40,14 @@ if(isset($_POST['campo'])){
             <td>$ordem->marca</td>
             <td>$total</td>
             
-            <td><a href='imprimir.php?acao=carregar&id=$id'>Carregar</button></td>
+            <td><a href='carregar.php?acao=carregar&id=$id'>Carregar</button></td>
             <td><a href='consultar.php?acao=excluir&id=$id' >Excluir</button></td>
             
         </tr>  ";
     }
     echo "</tbody>
     </table>";
+    exit;
 }
 ?>
 

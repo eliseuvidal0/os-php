@@ -35,7 +35,7 @@ if (!$evazio) {
     </center>
     <br>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <form form action="http://localhost:8080/" method="POST">
+    <form form action="http://<?= $_SERVER['HTTP_HOST'] ?>/" method="POST">
         <div class="container">
             <div class="form-row">
                 <div class="col-md-4">

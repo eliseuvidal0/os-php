@@ -1,11 +1,12 @@
-
+.buscar 
+{
+    width: 300px;
+    margin: 0 auto;
+}
 input[type=text]
-{ 
+{
     font-size: 20px;
     font-family: sans-serif;
-    position: absolute;
-    top: 50px;
-    left: 500px;
     border-radius:4px;
     -moz-border-radius:4px;
     -webkit-border-radius:5px;
@@ -19,11 +20,14 @@ input[type=text]
 }
 table
 {
-    position: absolute;
-    top: 120px;
+    position: relative;
     width: auto;
 	margin: 0 auto;
 	padding: 10px;
+}
+.os
+{
+    top: 12px;
 }
 table thead td
 {
@@ -45,4 +49,3 @@ table tbody td
     font-family: sans-serif;
 
 }
-

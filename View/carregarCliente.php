@@ -23,7 +23,9 @@ if (!$evazio) {
 </head>
 
 <body>
-
+    <header>
+        <?php include 'head.php'; ?>
+    </header>
     <center>
         <h1>Dados do Cliente</h1>
         <h5>TSA (41)3026-1991</h5>

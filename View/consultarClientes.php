@@ -35,7 +35,7 @@ if (!$evazio) {
 
 <body>
     <div>
-        <a href="http://localhost:8080/index.php">Voltar</a>
+        <a href="http://<?= $_SERVER['HTTP_HOST'] ?>/index.php">Voltar</a>
     </div>
     <!--
     <form method="POST">

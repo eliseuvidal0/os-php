@@ -50,8 +50,8 @@ class ClienteDAO {
     public function consultar($campo)
     {
         $stmt = $this->conn->prepare('select c.id_cliente, c.nome, c.cpf, c.cnpj, c.telefone, c.celular, c.email, e.cep
-                        from bancolocal.clientes as c
-                        left join bancolocal.endereco as e on c.id_endereco = e.id_endereco');
+                        from clientes as c
+                        left join endereco as e on c.id_endereco = e.id_endereco');
 
                         //WHERE c.nome LIKE '.$campo);
         try {
@@ -65,7 +65,7 @@ class ClienteDAO {
     public function buscarValor($id)
     {
         $stmt = $this->conn->prepare('select preco
-                        from bancolocal.ordem where id_cliente = '.$id);
+                        from ordem where id_cliente = '.$id);
 
         try {
             $stmt->execute();
@@ -78,8 +78,8 @@ class ClienteDAO {
     public function buscarClientePorId($id)
     {
         $stmt = $this->conn->prepare('select c.id_cliente, c.nome, c.cpf, c.cnpj, c.telefone, c.celular, c.email, e.cep, e.rua, e.bairro, e.cidade, e.uf
-        from bancolocal.clientes as c
-        left join bancolocal.endereco as e on c.id_endereco = e.id_endereco
+        from clientes as c
+        left join endereco as e on c.id_endereco = e.id_endereco
         WHERE c.id_cliente = '.$id);
 
         try {

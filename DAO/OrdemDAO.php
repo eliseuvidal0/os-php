@@ -43,12 +43,12 @@ class OrdemDAO {
     public function consultar($campo)
     {
         #$stmt = $this->conn->prepare('select o.id_ordem, o.data, c.nome,c.cpf,o.marca,o.preco
-        #                        from bancolocal.ordem as o
-        #                        left join bancolocal.clientes as c on o.id_cliente = c.id_cliente');
+        #                        from ordem as o
+        #                        left join clientes as c on o.id_cliente = c.id_cliente');
 
         $stmt = $this->conn->prepare('select o.id_ordem, o.data, c.nome,c.cpf,o.marca,o.preco
-                        from bancolocal.ordem as o
-                        left join bancolocal.clientes as c on o.id_cliente = c.id_cliente
+                        from ordem as o
+                        left join clientes as c on o.id_cliente = c.id_cliente
                         WHERE c.nome LIKE '.$campo);
         try {
             $stmt->execute();
@@ -61,9 +61,9 @@ class OrdemDAO {
     public function getOrdem($id)
     {
         $stmt = $this->conn->prepare('select id_ordem,data,aparelho,marca,serie,preco,defeito,obs,servico,garantia,nome,cpf,cnpj,telefone,celular,email,cep,rua,bairro,cidade,uf,opcao
-                                    from bancolocal.ordem as o
-                                    left join bancolocal.clientes as c on o.id_cliente = c.id_cliente
-                                    left join bancolocal.endereco as e on o.id_endereco = c.id_endereco
+                                    from ordem as o
+                                    left join clientes as c on o.id_cliente = c.id_cliente
+                                    left join endereco as e on o.id_endereco = c.id_endereco
                                     where id_ordem = '.$id.' limit 1');
         try {
             $stmt->execute();
